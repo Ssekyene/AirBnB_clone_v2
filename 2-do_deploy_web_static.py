@@ -1,42 +1,59 @@
 #!/usr/bin/python3
 """
-    Fabric script that distributes an archive to the web servers.
+Fabric script (based on the file 2-do_deploy_web_static.py) that
+creates and distributes an archive to your web servers,
+using the function deploy
 """
-from os import path
-from fabric.api import env, put, run
+from fabric.api import *
+from datetime import datetime
+import os
 
-env.hosts = ['35.229.40.200', '35.229.23.118']
+env.hosts = ['52.91.125.119', '52.86.30.214']
+env.user = 'ubuntu'
+env.key_filename = '~/.ssh/id_rsa'
 
-
+@task
 def do_deploy(archive_path):
-    """ Function that distributes the archive.
-
-    Args:
-        archive_path (str): the path of the archive to deploy on the servers.
     """
-
+    creates and distributes an archive to your web servers
+    """
     try:
-        if not path.exists(archive_path):
-            raise FileNotFoundError
+        # Check if file path exists
+        if not (os.path.exists(archive_path)):
+            return False
 
-        name = archive_path.split("/")[-1]
-        name_no_ext = name.split(".")[0]
+        # upload archive to tmp directory of web server
+        put(archive_path, '/tmp/')
 
-        remote = "/data/web_static/releases"
-        dest = "{}/{}".format(remote, name_no_ext)
+        # target directory
+        target = archive_path[-18:-4]
+        run('sudo mkdir -p /data/web_static/\
+releases/web_static_{}/'.format(target))
 
-        put(archive_path, '/tmp')
-        run('mkdir -p {}/'.format(dest))
-        run('tar -xzf /tmp/{} -C {}'.format(name, dest))
-        run('rm /tmp/{}'.format(name))
-        run('mv {}/web_static/* {}/'.format(dest, dest))
-        run('rm -rf {}/web_static'.format(dest))
-        run('rm -rf /data/web_static/current')
-        run('ln -s {}/ /data/web_static/current'.format(dest))
+        # uncompress archive and delete .tgz
+        run('sudo tar -xzf /tmp/web_static_{}.tgz -C \
+/data/web_static/releases/web_static_{}/'
+            .format(target, target))
 
-    except:
-        print("Error. Version deploy aborted")
+        # delete archive from web server
+        run('sudo rm /tmp/web_static_{}.tgz'.format(target))
+
+        # move files to web_static
+        run('sudo mv /data/web_static/releases/web_static_{}/web_static/* \
+/data/web_static/releases/web_static_{}/'.format(target, target))
+
+        # remove cached data
+        run('sudo rm -rf /data/web_static/releases/\
+web_static_{}/web_static'.format(target))
+
+        # delete pre-existing sym link
+        run('sudo rm -rf /data/web_static/current')
+
+        # create new symbolic link
+        run('sudo ln -s /data/web_static/releases/\
+web_static_{}/ /data/web_static/current'.format(target))
+    except FileNotFoundError:
         return False
 
-    print("New version deployed!")
+        # if all ops are done correctly
     return True

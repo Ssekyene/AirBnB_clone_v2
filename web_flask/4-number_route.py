@@ -1,56 +1,52 @@
 #!/usr/bin/python3
-""" This is the 5th Flask setup script. """
+"""
+script that starts a Flask web application
+web application must be listening on 0.0.0.0, port 5000
+Routes:
+        /: display “Hello HBNB!”
+        /hbnb: display “HBNB”
+        /c/<text>: display “C ” (replace underscore _ symbols with a space)
+        /python/<text>: display “Python ”, replace underscore with a space
+            The default value of text is “is cool”
+        /number/<n>: display “n is a number” only if n is an integer
+use the option strict_slashes=False in your route definition
+"""
 
 from flask import Flask
-
 app = Flask(__name__)
+app.url_map.strict_slashes = False
 
 
-@app.route('/', strict_slashes=False)
-def hello():
-    """
-        Flask route at root.
-        Displays 'Hello HBNB!'.
-    """
+@app.route("/")
+def hello_hbnb():
+    """ Return message """
     return "Hello HBNB!"
 
 
-@app.route('/hbnb', strict_slashes=False)
+@app.route("/hbnb")
 def hbnb():
-    """
-        Flask route at /hbnb.
-        Displays 'HBNB'.
-    """
+    """ Return message """
     return "HBNB"
 
 
-@app.route('/c/<text>', strict_slashes=False)
-def c(text):
-    """
-        Flask route at /c/<text>.
-        Displays 'C + <text>'.
-    """
+@app.route("/c/<text>")
+def c_text(text):
+    """ Return custom message """
     return "C {}".format(text.replace('_', ' '))
 
 
-@app.route('/python', strict_slashes=False)
-@app.route('/python/<text>', strict_slashes=False)
-def python(text="is cool"):
-    """
-        Flask route at /python/(<text>).
-        Displays 'Python + <text>'.
-        Default value of <text> : 'is cool'.
-    """
+@app.route("/python")
+@app.route("/python/<text>")
+def python_text(text="is cool"):
+    """ Return a custom message """
     return "Python {}".format(text.replace('_', ' '))
 
 
-@app.route('/number/<int:n>', strict_slashes=False)
+@app.route("/number/<int:n>")
 def number(n):
-    """
-        Flask route at /number/<n>.
-        Displays '<n> + is an number' if <n> is a int.
-    """
-    return "{} is a number".format(n)
+    """ Display text n is a number if int"""
+    return f"{n} is a number"
 
-if __name__ == '__main__':
-    app.run(host="0.0.0.0", port=5000)
+
+if __name__ == "__main__":
+    app.run(host="0.0.0.0", port=5000, debug=True)
