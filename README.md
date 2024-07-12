@@ -24,6 +24,23 @@ This repository contains the initial stage of a student project to build a clone
 <center> <h2>General Use</h2> </center>
 
 1. First clone this repository.
+2. Set environment variables below;
+	- `HBNB_ENV`: running environment. It can be “dev” or “test” for the moment (“production” soon!)
+	- `HBNB_MYSQL_USER`: the username of your MySQL
+	- `HBNB_MYSQL_PWD`: the password of your MySQL
+	- `HBNB_MYSQL_HOST`: the hostname of your MySQL
+	- `HBNB_MYSQL_DB`: the database name of your MySQL
+	- `HBNB_TYPE_STORAGE`: the type of storage used. It can be “file” (using `FileStorage`) or `db` (using `DBStorage`)
+
+You may accomplish the above for example by including the commands below in `~/.bashrc` script of Unix-based OS distros;
+```
+export HBNB_TYPE_STORAGE=db
+export HBNB_MYSQL_USER=hbnb_dev
+export HBNB_MYSQL_PWD=hbnb_dev_pwd
+export HBNB_MYSQL_HOST=localhost
+export HBNB_MYSQL_DB=hbnb_dev_db
+```
+**Dont't forget** to restart 🔄 the OS after setting the environment variables for proper functioning.
 
 3. Once the repository is cloned locate the "console.py" file and run it as follows:
 ```
