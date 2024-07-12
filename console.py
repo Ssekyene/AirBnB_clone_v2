@@ -142,7 +142,8 @@ class HBNBCommand(cmd.Cmd):
     def help_create(self):
         """ Help information for the create method """
         print("Creates a class of any type")
-        print("[Usage]: create <className>\n")
+        print("[Usage]: create <className> <param 1> <param 2> <param 3>...")
+        print("Param syntax: <key name>=<value>\n")
 
     def do_show(self, args):
         """ Method to show an individual object """
@@ -212,6 +213,7 @@ class HBNBCommand(cmd.Cmd):
 
     def do_all(self, args):
         """ Shows all objects, or all objects of a class"""
+        print_list = []
         if args:
             args = args.split(' ')[0]  # remove possible trailing args
             if args not in HBNBCommand.classes:
@@ -220,9 +222,11 @@ class HBNBCommand(cmd.Cmd):
             for k, v in storage._FileStorage__objects.items():
                 if k.split('.')[0] == args:
                     print_list.append(str(v))
+            print(print_list)
         else:
             for k, v in storage._FileStorage__objects.items():
                 print_list.append(str(v))
+            print(print_list)
 
     def help_all(self):
         """ Help information for the all command """
