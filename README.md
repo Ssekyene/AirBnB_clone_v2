@@ -42,7 +42,12 @@ export HBNB_MYSQL_DB=hbnb_dev_db
 ```
 **Dont't forget** to restart 🔄 the OS after setting the environment variables for proper functioning.
 
-3. Once the repository is cloned locate the "console.py" file and run it as follows:
+Alternatively, you can pass the environment variables directly to the console eg;
+```
+echo 'all State' | HBNB_MYSQL_USER=hbnb_dev HBNB_MYSQL_PWD=hbnb_dev_pwd HBNB_MYSQL_HOST=localhost HBNB_MYSQL_DB=hbnb_dev_db HBNB_TYPE_STORAGE=db ./console.py
+```
+
+3. Once the repository is cloned and environment variables are permanently set, locate the "console.py" file and run it as follows:
 ```
 /AirBnB_clone$ ./console.py
 ```
@@ -64,6 +69,8 @@ export HBNB_MYSQL_DB=hbnb_dev_db
     * update - Updates existing attributes an object based on class name and UUID
 
     * quit - Exits the program (EOF will as well)
+
+    * help - Displays information about the command usage
 
 
 ##### Alternative Syntax
@@ -157,3 +164,5 @@ Usage: <class_name>.update(<_id>, <dictionary>)
 (hbnb) ["[User] (98bea5de-9cb0-4d78-8a9d-c4de03521c30) {'updated_at': datetime.datetime(2020, 2, 19, 21, 47, 29, 134362), 'name': 'Fred the Frog', 'age': 9, 'id': '98bea5de-9cb0-4d78-8a9d-c4de03521c30', 'created_at': datetime.datetime(2020, 2, 19, 21, 47, 29, 134343)}"]
 ```
 <br>
+
+##### Click [here](./ER-diagram.PNG) for the ER diagram for the database.
