@@ -9,8 +9,7 @@ from models.amenity import Amenity
 from models.place import Place
 from models.review import Review
 from sqlalchemy import create_engine
-from sqlalchemy.orm import scoped_session
-from sqlalchemy.orm.session import sessionmaker, Session
+from sqlalchemy.orm import sessionmaker, scoped_session
 from os import getenv
 
 all_classes = {'State': State, 'City': City,
@@ -52,9 +51,9 @@ class DBStorage:
             for row in self.__session.query(cls).all():
                 # populate dict with objects from storage
                 obj_dict.update({'{}.{}'.
-                                format(type(cls).__name__, row.id,): row})
+                                format(type(row).__name__, row.id,): row})
         else:
-            for key, val in all_classes.items():
+            for val in all_classes.values():
                 for row in self.__session.query(val):
                     obj_dict.update({'{}.{}'.
                                     format(type(row).__name__, row.id,): row})
@@ -89,8 +88,7 @@ class DBStorage:
         # create db tables
         session = sessionmaker(bind=self.__engine,
                                expire_on_commit=False)
-        # previousy:
-        # Session = scoped_session(session)
+        # to make sure the session is thread-safe
         self.__session = scoped_session(session)
 
     def close(self):
