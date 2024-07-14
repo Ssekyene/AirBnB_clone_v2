@@ -4,6 +4,7 @@ from models.base_model import BaseModel, Base
 from sqlalchemy import Column, String, Float, Integer, ForeignKey, Table
 from sqlalchemy.orm import relationship
 from os import environ
+import models
 
 
 place_amenity = Table('place_amenity', Base.metadata,
@@ -55,7 +56,7 @@ class Place(BaseModel, Base):
         def reviews(self):
             """ getter returns list of reviews """
             list_of_reviews = []
-            all_reviews = models.strage.all(Review)
+            all_reviews = models.storage.all(Review)
             for review in all_reviews.values():
                 if review.place_id == self.id:
                     list_of_reviews.append(review)
