@@ -166,3 +166,7 @@ Usage: <class_name>.update(<_id>, <dictionary>)
 <br>
 
 ##### Click [here](./ER-diagram.PNG) for the ER diagram for the database.
+### References
+- [cmd module](https://docs.python.org/3/library/cmd.html)
+- [unittest module](https://docs.python.org/3/library/unittest.html#module-unittest)
+- [SQLAlchemy](https://docs.sqlalchemy.org/en/13/)
