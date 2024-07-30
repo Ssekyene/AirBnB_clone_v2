@@ -15,14 +15,14 @@ def do_pack():
 
     # set up datetime
     now = datetime.now()
-    now = now.strftime('%Y%m%d%H%M%S')
-    archive_path = 'versions/web_static_' + now + '.tgz'
+    timestamp = now.strftime('%Y%m%d%H%M%S')
+    archive_name = 'versions/web_static_' + timestamp + '.tgz'
 
     # Create archive
     local('mkdir -p versions/')
-    result = local('tar -xzvf {} web_static/'.format(archive_path))
+    result = local('tar -czvf {} web_static/'.format(archive_name))
 
     # Check success
     if result.succeeded:
-        return archive_path
+        return archive_name
     return None
