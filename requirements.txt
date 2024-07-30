@@ -1,0 +1,9 @@
+# run pip3 install -r requirements.txt
+pyparsing                 # A dependency for parsing text
+appdirs                   # A dependency for application directories management
+setuptools==40.1.0        # Specific version of setuptools required
+cryptography==2.8         # Cryptography library version 2.8
+bcrypt==3.1.7             # Bcrypt library for password hashing
+PyNaCl==1.3.0             # PyNaCl library for cryptography
+Fabric3==1.14.post1       # Fabric3 version for deployment tasks
+

@@ -10,7 +10,7 @@ sudo service nginx restart
 sudo mkdir -p /data/web_static/releases/test/ /data/web_static/shared/
 
 # Test file
-echo "Hello World!!" | sudo tee /data/web_static/releases/test/index.html > /dev/null
+echo -e "<body>\n\tHolberton Says Hello\n</body>" | sudo tee /data/web_static/releases/test/index.html > /dev/null
 
 # Symbolic link
 sudo ln -sf /data/web_static/releases/test/ /data/web_static/current
@@ -19,7 +19,7 @@ sudo ln -sf /data/web_static/releases/test/ /data/web_static/current
 sudo chown -hR ubuntu:ubuntu /data/
 
 # Configure nginx
-sudo sed -i "44i \\\n\tlocation /hbnb_static {\n\t\talias /data/web_static/current/;\n\t}" /etc/nginx/sites-available/default
+sudo sed -i "43i \\\n\tlocation /hbnb_static {\n\t\talias /data/web_static/current/;\n\t}" /etc/nginx/sites-available/default
 
 # restart Nginx
 sudo service nginx restart
