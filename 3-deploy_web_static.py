@@ -8,9 +8,9 @@ from datetime import datetime
 import os
 
 
-env.hosts = ['52.91.125.119', '52.86.30.214']
+env.hosts = ['100.26.231.29', '18.214.87.0']
 env.user = 'ubuntu'
-env.key_filename = '~/.ssh/id_rsa'
+env.key_filename = '~/.ssh/school'
 
 
 def do_pack():
@@ -19,8 +19,8 @@ def do_pack():
     """
     # Set up datetime
     now = datetime.now()
-    now = now.strftime('%Y%m%d%H%M%S')
-    archive_path = 'versions/web_static_' + now + '.tgz'
+    timestamp = now.strftime('%Y%m%d%H%M%S')
+    archive_path = 'versions/web_static_' + timestamp + '.tgz'
 
     # Create archive
     local('mkdir -p versions/')
@@ -28,6 +28,9 @@ def do_pack():
 
     # Check if archiving was successful
     if result.succeeded:
+        file_size = os.path.getsize(archive_path)
+        # display the archive path and the size
+        print("web_static packed: {} -> {}Bytes".format(archive_path, file_size))
         return archive_path
     return None
 
@@ -44,40 +47,40 @@ def do_deploy(archive_path):
         # upload archive to web server tmp directory
         put(archive_path, '/tmp/')
 
-        # target directory
-        target = archive_path[-18:-4]
+        # get timestamp
+        timestamp = archive_path[-18:-4]
         run('sudo mkdir -p /data/web_static/\
-releases/web_static_{}/'.format(target))
+releases/web_static_{}/'.format(timestamp))
 
         # uncompress archive and delete .tgz
         run('sudo tar -xzf /tmp/web_static_{}.tgz -C \
 /data/web_static/releases/web_static_{}/'
-            .format(target, target))
+            .format(timestamp, timestamp))
 
         # delete archive from web server
-        run('sudo rm /tmp/web_static_{}.tgz'.format(target))
+        run('sudo rm /tmp/web_static_{}.tgz'.format(timestamp))
 
-        # move files to web_static
+        # move files to web_static production directory
         run('sudo mv /data/web_static/releases/web_static_{}/web_static/* \
-/data/web_static/releases/web_static_{}/'.format(target, target))
+/data/web_static/releases/web_static_{}/'.format(timestamp, timestamp))
 
-        # remove cached data
+        # delete the development web_static directory
         run('sudo rm -rf /data/web_static/releases/\
-web_static_{}/web_static'.format(target))
+web_static_{}/web_static'.format(timestamp))
 
         # delete pre-existing sym link
         run('sudo rm -rf /data/web_static/current')
 
         # create new symbolic link
         run('sudo ln -s /data/web_static/releases/\
-web_static_{}/ /data/web_static/current'.format(target))
+web_static_{}/ /data/web_static/current'.format(timestamp))
     except FileNotFoundError:
         return False
 
         # if all ops are done correctly
     return True
 
-
+@task
 def deploy():
     """
     Deploy web static
@@ -86,4 +89,5 @@ def deploy():
     if archive_path is None:
         return False
     success = do_deploy(archive_path)
+    print("New version deployed!")
     return success
