@@ -12,7 +12,7 @@ env.hosts = ['100.26.231.29', '18.214.87.0']
 env.user = 'ubuntu'
 env.key_filename = '~/.ssh/school'
 
-
+@task
 def do_pack():
     """Function to compress directory
     Return archive path on success; None on fail
@@ -86,8 +86,10 @@ def deploy():
     Deploy web static
     """
     archive_path = do_pack()
+    
     if archive_path is None:
         return False
-    success = do_deploy(archive_path)
-    print("New version deployed!")
-    return success
+    result = do_deploy(archive_path)
+    if result:
+        print("New version deployed!")
+    return result
