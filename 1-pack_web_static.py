@@ -5,6 +5,7 @@ folder of your AirBnB Clone repo, using the function do_pack
 """
 from fabric.api import *
 from datetime import datetime
+import os
 
 @task
 def do_pack():
@@ -16,13 +17,15 @@ def do_pack():
     # set up datetime
     now = datetime.now()
     timestamp = now.strftime('%Y%m%d%H%M%S')
-    archive_name = 'versions/web_static_' + timestamp + '.tgz'
+    archive_path = 'versions/web_static_' + timestamp + '.tgz'
 
     # Create archive
     local('mkdir -p versions/')
-    result = local('tar -czvf {} web_static/'.format(archive_name))
+    result = local('tar -czvf {} web_static/'.format(archive_path))
 
-    # Check success
+    # Check success and print the archive's name
     if result.succeeded:
-        return archive_name
+        file_size = os.path.getsize(archive_path)
+        print("web_static packed: {} -> {}Bytes".format(archive_path, file_size))
+        return archive_path
     return None
