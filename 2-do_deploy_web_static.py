@@ -8,9 +8,9 @@ from fabric.api import *
 from datetime import datetime
 import os
 
-env.hosts = ['52.91.125.119', '52.86.30.214']
+env.hosts = ['100.26.231.29', '18.214.87.0']
 env.user = 'ubuntu'
-env.key_filename = '~/.ssh/id_rsa'
+env.key_filename = '~/.ssh/school'
 
 @task
 def do_deploy(archive_path):
@@ -25,33 +25,33 @@ def do_deploy(archive_path):
         # upload archive to tmp directory of web server
         put(archive_path, '/tmp/')
 
-        # target directory
-        target = archive_path[-18:-4]
+        # extract off the timestamp
+        timestamp = archive_path[-18:-4]
         run('sudo mkdir -p /data/web_static/\
-releases/web_static_{}/'.format(target))
+releases/web_static_{}/'.format(timestamp))
 
         # uncompress archive and delete .tgz
         run('sudo tar -xzf /tmp/web_static_{}.tgz -C \
 /data/web_static/releases/web_static_{}/'
-            .format(target, target))
+            .format(timestamp, timestamp))
 
         # delete archive from web server
-        run('sudo rm /tmp/web_static_{}.tgz'.format(target))
+        run('sudo rm /tmp/web_static_{}.tgz'.format(timestamp))
 
-        # move files to web_static
+        # move files to production web_static directory
         run('sudo mv /data/web_static/releases/web_static_{}/web_static/* \
-/data/web_static/releases/web_static_{}/'.format(target, target))
+/data/web_static/releases/web_static_{}/'.format(timestamp, timestamp))
 
-        # remove cached data
+        # delete the development web_static directory
         run('sudo rm -rf /data/web_static/releases/\
-web_static_{}/web_static'.format(target))
+web_static_{}/web_static'.format(timestamp))
 
         # delete pre-existing sym link
         run('sudo rm -rf /data/web_static/current')
 
         # create new symbolic link
         run('sudo ln -s /data/web_static/releases/\
-web_static_{}/ /data/web_static/current'.format(target))
+web_static_{}/ /data/web_static/current'.format(timestamp))
     except FileNotFoundError:
         return False
 
