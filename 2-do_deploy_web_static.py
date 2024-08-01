@@ -55,5 +55,6 @@ web_static_{}/ /data/web_static/current'.format(timestamp))
     except FileNotFoundError:
         return False
 
-        # if all ops are done correctly
+    # if all ops are done correctly
+    print("New version deployed!")
     return True
