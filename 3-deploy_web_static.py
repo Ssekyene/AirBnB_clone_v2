@@ -12,7 +12,6 @@ env.hosts = ['100.26.231.29', '18.214.87.0']
 env.user = 'ubuntu'
 env.key_filename = '~/.ssh/school'
 
-@task
 def do_pack():
     """Function to compress directory
     Return archive path on success; None on fail
@@ -77,19 +76,19 @@ web_static_{}/ /data/web_static/current'.format(timestamp))
     except FileNotFoundError:
         return False
 
-        # if all ops are done correctly
+    # if all ops are done correctly
+    print("New version deployed!")
     return True
 
-@task
 def deploy():
     """
     Deploy web static
     """
     archive_path = do_pack()
-    
+   
     if archive_path is None:
         return False
     result = do_deploy(archive_path)
     if result:
-        print("New version deployed!")
-    return result
+        return result
+    return False
