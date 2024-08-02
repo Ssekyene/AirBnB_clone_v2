@@ -47,7 +47,8 @@ package { 'nginx':
 
 -> file { '/data/web_static/releases/test/index.html':
   ensure  => 'present',
-  content => "this webpage is found in data/web_static/releases/test/index.htm \n"
+  content => "<html>\n\t<head>\n\t\t<title>Holberton</title>\n\t</head> \
+\n\t<body>\n\t\t<h1>Holberton Says Hello!</h1>\n\t</body>\n</html>"
 }
 
 -> file { '/data/web_static/current':
@@ -55,7 +56,7 @@ package { 'nginx':
   target => '/data/web_static/releases/test'
 }
 
--> exec { 'chown -R ubuntu:ubuntu /data/':
+-> exec { 'chown -hR ubuntu:ubuntu /data/':
   path => '/usr/bin/:/usr/local/bin/:/bin/'
 }
 
@@ -69,7 +70,7 @@ file { '/var/www':
 
 -> file { '/var/www/html/index.html':
   ensure  => 'present',
-  content => "This is my first upload  in /var/www/index.html***\n"
+  content => "<body>Hello World</body>"
 }
 
 -> file { '/var/www/html/404.html':
