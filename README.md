@@ -83,11 +83,11 @@ Advanced syntax is implemented for the following commands:
 
     * all - Shows all objects the program has access to, or all objects of a given class
 
-	* count - Return number of object instances by class
+    * count - Return number of object instances by class
 
     * show - Shows an object based on class and UUID
 
-	* destroy - Destroys an object based on class and UUID
+    * destroy - Destroys an object based on class and UUID
 
     * update - Updates existing attributes an object based on class name and UUID
 
@@ -168,7 +168,24 @@ Usage: <class_name>.update(<_id>, <dictionary>)
 <br>
 
 ##### Click [here](./ER-diagram.PNG) for the ER diagram for the database.
+
+**Note:**
+* [pack_and_deploy.sh](./pack_and_deploy.sh) is a better alternative to using [3-deploy_web_static.py](./3-deploy_web_static.py) since it ensures that the same archive is deployed to different servers which is not the case with its counter part.
+
+### Requirements
+* Use [install-fab.sh](./install-fab.sh) to install Fabric for Python 3 - version 1.14.post1
+* Use python3 (version 3.4.0 and above). You may consider setting up a virtual environment
+* Use the `PEP 8` style (version `1.7.*`)
+
 ### References
 - [cmd module](https://docs.python.org/3/library/cmd.html)
 - [unittest module](https://docs.python.org/3/library/unittest.html#module-unittest)
 - [SQLAlchemy](https://docs.sqlalchemy.org/en/13/)
+- [How to use Fabric](https://www.digitalocean.com/community/tutorials/how-to-use-fabric-to-automate-administration-tasks-and-deployments)
+- [How to use Fabric in Python](https://www.pythonforbeginners.com/systems-programming/how-to-use-fabric-in-python)
+- [Fabric and command line option](https://docs.fabfile.org/en/1.13/usage/fab.html)
+- [Nginx configuration for beginners](https://nginx.org/en/docs/beginners_guide.html)
+- [Fabric for Python 3](https://github.com/mathiasertl/fabric)
+- [Fabric Documentation](https://www.fabfile.org/)
+- [Python Virtual Environments: A primer](https://realpython.com/python-virtual-environments-a-primer/)
+
