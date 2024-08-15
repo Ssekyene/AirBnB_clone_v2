@@ -13,13 +13,13 @@ app = Flask(__name__)
 app.url_map.strict_slashes = False
 
 
-@app.route('/', strict_slashes=False)
+@app.route('/')
 def hello_hbnb():
     """Return a message"""
     return "Hello HBNB!"
 
 
-@app.route('/hbnb', strict_slashes=False)
+@app.route('/hbnb')
 def hbnb():
     """Return a message"""
     return "HBNB"
