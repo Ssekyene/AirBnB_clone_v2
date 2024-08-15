@@ -177,6 +177,29 @@ Usage: <class_name>.update(<_id>, <dictionary>)
 * Use python3 (version 3.4.0 and above). You may consider setting up a virtual environment
 * Use the `PEP 8` style (version `1.7.*`)
 
+## More Info
+You may test out the flask app scripts in [web_flask](./web_flask) as for example:
+
+Terminal #0:
+```
+guillaume@ubuntu:~/AirBnB_v2$ python3 -m web_flask.2-c_route
+* Running on http://0.0.0.0:5000/ (Press CTRL+C to quit)
+....
+```
+Terminal #1
+```
+guillaume@ubuntu:~$ curl 0.0.0.0:5000/c/is_fun ; echo "" | cat -e
+C is fun$
+guillaume@ubuntu:~$ curl 0.0.0.0:5000/c/cool ; echo "" | cat -e
+C cool$
+guillaume@ubuntu:~$ curl 0.0.0.0:5000/c
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<title>404 Not Found</title>
+<h1>Not Found</h1>
+<p>The requested URL was not found on the server.  If you entered the URL manually please check your spelling and try again.</p>
+guillaume@ubuntu:~$ 
+```
+
 ### References
 - [cmd module](https://docs.python.org/3/library/cmd.html)
 - [unittest module](https://docs.python.org/3/library/unittest.html#module-unittest)
