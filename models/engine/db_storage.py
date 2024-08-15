@@ -56,7 +56,7 @@ class DBStorage:
             for val in all_classes.values():
                 for row in self.__session.query(val):
                     obj_dict.update({'{}.{}'.
-                                    format(type(row).__name__, row.id,): row})
+                                    format(type(row).__name__, row.id,): row})          
         return obj_dict
 
     def new(self, obj):
