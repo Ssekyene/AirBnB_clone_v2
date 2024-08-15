@@ -178,7 +178,7 @@ Usage: <class_name>.update(<_id>, <dictionary>)
 * Use the `PEP 8` style (version `1.7.*`)
 
 ## More Info
-You may test out the flask app scripts in [web_flask](./web_flask) as for example:
+You may test out the flask app scripts in [web_flask](./web_flask) directory as for example:
 
 Terminal #0:
 ```
