@@ -1,6 +1,8 @@
 #!/usr/bin/python3
 """
  Test cities access from a state
+Run it as follows:
+~/AirBnB_v2$ rm file.json ; HBNB_TYPE_STORAGE=fs ./main.py
 """
 from models import storage
 from models.state import State
