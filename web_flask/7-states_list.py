@@ -18,8 +18,9 @@ intranet-projects-files/holbertonschool-higher-level_programming+/290/7-states_l
 
 Then: cat 7-dump.sql | sudo mysql -uroot -p
 
-Run: cd ~/AirBnB_Clone_v2 && HBNB_MYSQL_USER=hbnb_dev HBNB_MYSQL_PWD=hbnb_dev_pwd \
-HBNB_MYSQL_HOST=localhost HBNB_MYSQL_DB=hbnb_dev_db HBNB_TYPE_STORAGE=db \
+Run: cd ~/AirBnB_Clone_v2 && HBNB_MYSQL_USER=hbnb_dev \
+HBNB_MYSQL_PWD=hbnb_dev_pwd HBNB_MYSQL_HOST=localhost \
+HBNB_MYSQL_DB=hbnb_dev_db HBNB_TYPE_STORAGE=db \
 python3 -m web_flask.7-states_list
 """
 from models import storage
