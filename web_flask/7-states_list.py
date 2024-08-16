@@ -13,7 +13,7 @@ Routes:
             LI tag: description of one State: <state.id>: <B><state.name></B>
 Must use the option strict_slashes=False in your route definition
 
-To get some data use: curl -o 7-dump.sql "https://s3.amazonaws.com/ \
+To get some data use: curl -o 7-dump.sql "https://s3.amazonaws.com/\
 intranet-projects-files/holbertonschool-higher-level_programming+/290/7-states_list.sql"
 
 Then: cat 7-dump.sql | sudo mysql -uroot -p
