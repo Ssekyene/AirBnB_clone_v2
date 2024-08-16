@@ -213,4 +213,9 @@ guillaume@ubuntu:~$
 - [Fabric for Python 3](https://github.com/mathiasertl/fabric)
 - [Fabric Documentation](https://www.fabfile.org/)
 - [Python Virtual Environments: A primer](https://realpython.com/python-virtual-environments-a-primer/)
+- [What is a Web Framework?](https://intelegain-technologies.medium.com/what-are-web-frameworks-and-why-you-need-them-c4e8806bd0fb)
+- [A Minimal Application](https://flask.palletsprojects.com/en/2.3.x/quickstart/#a-minimal-application)
+- [Flask](https://palletsprojects.com/projects/flask/)
+- [Jinja](https://jinja.palletsprojects.com/en/2.9.x/templates/)
+
 
