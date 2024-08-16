@@ -51,7 +51,7 @@ button:hover{
     padding-left: 30px;
 }
 .popover{
-    visibility: hidden;
+    display: none;
     background-color: #FAFAFA;
     border: solid #DDDDDD 1px;
     border-radius: 4px;
@@ -59,6 +59,7 @@ button:hover{
     padding-bottom: 10%;
     max-height: 300px;
     overflow: auto;
+    z-index: 9999;
 }
 .popover li h2{
     font-size: 16px;
@@ -78,12 +79,12 @@ ul{
     padding-top: 30px;
 }
 .locations:hover >.popover{
-    visibility: visible;
-    background-color: #FFF;
+    display: block;
+    background-color: #f0f5f7e9;
     margin-bottom: 50px;
 }
 
 .amenities:hover > .popover{
-    visibility: visible;
-    background-color: #FFF;
+    display: block;
+    background-color: #f0f5f7e9;
 }

@@ -1,5 +1,20 @@
 #!/usr/bin/python3
-"""Start web application with two routings
+"""
+a script that starts a Flask web application
+/hbnb: display a HTML page like 8-index.html,
+done during the 0x01. AirBnB clone - Web static project
+
+Get data: curl -o 100-dump.sql \
+"https://s3.amazonaws.com/intranet-projects-files/\
+holbertonschool-higher-level_programming+/290/100-hbnb.sql"
+
+Load the database:
+cat 100-dump.sql | sudo mysql -uroot -p
+
+Run: cd ~/AirBnB_clone_v2 && HBNB_MYSQL_USER=hbnb_dev \
+HBNB_MYSQL_PWD=hbnb_dev_pwd HBNB_MYSQL_HOST=localhost \
+HBNB_MYSQL_DB=hbnb_dev_db HBNB_TYPE_STORAGE=db \
+python3 -m web_flask.10-hbnb
 """
 
 from models import storage
@@ -16,10 +31,10 @@ def html_all_filters():
     """display html page w/ working city/state filters & amenities/properties
        runs with web static css files
     """
-    state_objs = [s for s in storage.all(State).values()]
-    amenity_objs = [a for a in storage.all(Amenity).values()]
-    place_objs = [p for p in storage.all(Place).values()]
-    user_objs = [u for u in storage.all(User).values()]
+    state_objs = [state for state in storage.all(State).values()]
+    amenity_objs = [amenity for amenity in storage.all(Amenity).values()]
+    place_objs = [place for place in storage.all(Place).values()]
+    user_objs = [user for user in storage.all(User).values()]
     place_owner_objs = []
     for place in place_objs:
         for user in user_objs:

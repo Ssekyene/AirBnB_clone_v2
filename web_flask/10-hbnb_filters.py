@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 """
-displays a HTML page like 6-index.html, which was 
+a script that starts a Flask web application
+/hbnb_filters displays a HTML page like 6-index.html, which was 
 done during the project 0x01. AirBnB clone - Web static
 
 Get data:
