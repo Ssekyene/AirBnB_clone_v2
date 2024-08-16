@@ -12,10 +12,20 @@ Routes:
             in DBStorage sorted by name (A->Z) tip
             LI tag: description of one State: <state.id>: <B><state.name></B>
 Must use the option strict_slashes=False in your route definition
+
+To get some data use: curl -o 7-dump.sql "https://s3.amazonaws.com/
+intranet-projects-files/holbertonschool-higher-level_programming+/290/7-states_list.sql"
+
+Then: cat 7-dump.sql | sudo mysql -uroot -p
+
+Run: ~/AirBnB_v2$ HBNB_MYSQL_USER=hbnb_dev HBNB_MYSQL_PWD=hbnb_dev_pwd
+ HBNB_MYSQL_HOST=localhost HBNB_MYSQL_DB=hbnb_dev_db HBNB_TYPE_STORAGE=db
+ python3 -m web_flask.7-states_list
 """
 from models import storage
 from models import State
 from flask import Flask, render_template
+
 app = Flask(__name__)
 
 

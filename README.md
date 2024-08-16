@@ -178,7 +178,7 @@ Usage: <class_name>.update(<_id>, <dictionary>)
 * Use the `PEP 8` style (version `1.7.*`)
 
 ## More Info
-You may test out the flask app scripts in [web_flask](./web_flask) directory as for example:
+* You may test out the flask app scripts in [web_flask](./web_flask) directory as for example:
 
 Terminal #0:
 ```
@@ -199,6 +199,8 @@ guillaume@ubuntu:~$ curl 0.0.0.0:5000/c
 <p>The requested URL was not found on the server.  If you entered the URL manually please check your spelling and try again.</p>
 guillaume@ubuntu:~$ 
 ```
+
+* The code is W3C compliant and validate with [W3C-Validator](https://github.com/alx-tools/W3C-Validator) (except for jinja template)
 
 ### References
 - [cmd module](https://docs.python.org/3/library/cmd.html)
