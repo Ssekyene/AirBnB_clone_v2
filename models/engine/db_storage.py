@@ -47,8 +47,8 @@ class DBStorage:
         """
         obj_dict = {}
 
-        if cls:
-            for row in self.__session.query(cls).all():
+        if cls and cls in all_classes:
+            for row in self.__session.query(all_classes[cls]).all():
                 # populate dict with objects from storage
                 obj_dict.update({'{}.{}'.
                                 format(type(row).__name__, row.id,): row})
